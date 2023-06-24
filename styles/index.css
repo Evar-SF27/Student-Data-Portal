@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    height: 90px;
+    background-color: rgb(255, 81, 0);
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 38px;
+    color: black;
+    padding: 20px;
+    font-family: Arial, Helvetica, sans-serif
+}
+
+h1 span {
+    color: white;
+}
+
+.bar {
+    fill: rgb(255, 81, 0);
+}

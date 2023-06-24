@@ -4,9 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/index.css">
     <title>Student Data Portal</title>
 </head>
 <body>
-    
+    <header>
+        <h1>Student <span>Data Portal</span></h1>
+    </header>
+    <div id="charts">
+        <div class="row-one">
+            <div class="subject-number"></div>
+            <div class="subject-mean"></div>
+        </div>
+        <div class="row-two">
+            <div class="subject-number"></div>
+            <div class="subject-pie"></div>
+        </div>
+    </div>
+    <script src="lib/d3.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/layout.js"></script>
+    <script src="js/update.js"></script>
+    <script src="js/index.js"></script>
 </body>
 </html>
