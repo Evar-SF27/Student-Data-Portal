@@ -1,13 +1,13 @@
 let config = {
     width: 600,
-    height: 800,
+    height: 500,
     transitionDuration: 700,
     transitionDelay: 10
 }
 
 let margin = {
-    top: 20,
-    bottom: 10,
-    left: 50,
-    right: 20
+    top: 10,
+    bottom: 20,
+    left: 25,
+    right: 25
 }
