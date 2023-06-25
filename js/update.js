@@ -49,5 +49,6 @@ function createBarChart(svgSelector, data) {
 
 function update() {
     createBarChart(".subject-number", layoutSubject(data))
-    // createBarChart()
+    createBarChart(".subject-mean", layoutMean(data))
+    // console.log(layoutMean(data))
 }
