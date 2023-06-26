@@ -1,5 +1,5 @@
 let config = {
-    width: 600,
+    width: 650,
     height: 500,
     transitionDuration: 700,
     transitionDelay: 10

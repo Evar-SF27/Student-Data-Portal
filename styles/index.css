@@ -21,6 +21,10 @@ h1 span {
     color: white;
 }
 
+#charts {
+    display: flex;
+}
+
 .bar {
     fill: rgb(255, 123, 0);
 }

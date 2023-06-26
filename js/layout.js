@@ -1,7 +1,17 @@
 function layoutYear(data) {
-    let layoutData = data
+    let layoutData = data.filter(d => d.subject == "Bio")
+    console.log(layoutData)
+    d = []
+    dataPath = []
+    for (let i = 0; i < layoutData.length; i++) {
+      dataPath.push([i * 5, layoutData[i].number])
+    }
+    d.push({
+      "dataPath": dataPath,
+      "data": layoutData
+    })
 
-    return layoutData
+    return d
 }
 
 function layoutSubject(data) {
