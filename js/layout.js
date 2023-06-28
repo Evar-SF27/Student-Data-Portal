@@ -1,6 +1,7 @@
 function layoutYear(data) {
     let layoutData = data.filter(d => d.subject == "Bio")
-    console.log(layoutData)
+    // console.log('1', layoutData)
+    
     d = []
     dataPath = []
     for (let i = 0; i < layoutData.length; i++) {
@@ -40,5 +41,7 @@ function layoutMean(data) {
 }
 
 function layoutPercentage(data) {
+  let layoutData = data.filter(d => d.year == "2013-14")
 
+  return layoutData
 }

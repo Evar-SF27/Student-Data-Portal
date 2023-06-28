@@ -50,6 +50,13 @@ function createBarChart(svgSelector, data) {
 function createLineChart(svgSelector, dataset) {
    data = dataset[0].data
    dataPath = dataset[0].dataPath
+//    var dataPath = [
+//       [1,1], [12,20], [24,36],
+//       [32, 50], [40, 70], [50, 100],
+//       [55, 106], [65, 123], [73, 130],
+//       [78, 134], [83, 136], [89, 138],
+//       [100, 140]
+//   ]
 
    const xScale = d3.scaleBand()
                      .range([0, width - margin.right])
@@ -86,32 +93,66 @@ function createLineChart(svgSelector, dataset) {
 
    const dataScale = d3.scaleLinear()
                        .domain(d3.extent(d3.merge(dataPath), d => d[0]))
-                       .range([margin, width - margin])
+                       .range([margin.right, width - margin.right])
    // const dataScale = d3.scaleLinear().range([0, width - margin.right]).domain(data.map((d) => d.x))
    const line = d3.line()
                   .x(d => dataScale(d[0]))
-                  .y(d => yScale(d.number))
+                  .y(d => yScale(d[1]))
+                  .curve(d3.curveMonotoneX)
 
-     svg.append("g")
-        .selectAll(".circle")
-        .data(data)
-        .enter()
-        .append("circle")
-        .attr("r", 5)
-        .attr("class", "bar")
-        .attr("cx", (d) => margin.left + xScale(d.year))
-        .attr("cy", (d) => (height - margin.bottom) - yScale(d.number))
+   svg.append("g")
+      .selectAll(".circle")
+      .data(data)
+      .enter()
+      .append("circle")
+      .attr("r", 5)
+      .attr("class", "circle")
+      .attr("cx", (d) => margin.left + xScale(d.year))
+      .attr("cy", (d) => (height - margin.bottom) - yScale(d.number))
 
-      svg.append("g")
-         .selectAll(".dataset")
-         .data(data)
-         .join("path") 
-         .attr("class", "dataset")
-         .attr("d", line)
-         .style("stroke", "red")
+   svg.append("path")
+      .data(dataPath)
+      .attr("class", "line")
+      .attr("d", line)
+      .style("stroke", "red")
+}
+
+function createPieChart(svgSelector, data) {
+   const pie = d3.pie()
+                 .value(d => d.number)
+                 .sort((a,b) => d3.ascending(a.number, b.number))
+
+   const arcData = pie(data)  
+   const arc = d3.arc().innerRadius(0).outerRadius(200)
+   const colorScale = d3.scaleOrdinal(d3.schemeCategory10)
+
+   const svg = d3.select(svgSelector)
+                 .append("svg")
+                 .attr("width", width)
+                 .attr("height", height)
+                 .attr("transform", "translate(" + 250 + "," + 50 + ")")
+
+   const g = svg.selectAll("path.slice")
+                .data(arcData)
+                .enter()
+                .append("g")
+                .attr("transform", "translate(200, 250)")
+
+   g.append("path")
+    .attr("class", "slice")
+    .attr("d", arc)
+    .style("fill", (d,i) => colorScale(i))
+                
+
+   g.append('text')
+      .attr("x",(d,i) => arc.centroid(d)[0])
+      .attr("y",(d,i) => arc.centroid(d)[1] + 5)
+      .attr("text-anchor", "middle")
+      .text(d => d.data.subject)
 }
 
 function update() {
+   createPieChart(".subject-pie", layoutPercentage(data))
    createBarChart(".subject-number", layoutSubject(data))
    createBarChart(".subject-mean", layoutMean(data))
    createLineChart(".subject-year", layoutYear(data))
