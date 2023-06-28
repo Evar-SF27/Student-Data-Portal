@@ -120,17 +120,22 @@ function createLineChart(svgSelector, dataset) {
 function createPieChart(svgSelector, data) {
    const pie = d3.pie()
                  .value(d => d.number)
-                 .sort((a,b) => d3.ascending(a.number, b.number))
+               //   .sort((a,b) => d3.ascending(a.number, b.number))
 
    const arcData = pie(data)  
-   const arc = d3.arc().innerRadius(0).outerRadius(200)
+   const arc = d3.arc()
+                 .innerRadius(50)
+                 .outerRadius(200)
+                 .padAngle(2)
+                 .padRadius(2)
+
    const colorScale = d3.scaleOrdinal(d3.schemeCategory10)
 
    const svg = d3.select(svgSelector)
                  .append("svg")
                  .attr("width", width)
                  .attr("height", height)
-                 .attr("transform", "translate(" + 250 + "," + 50 + ")")
+                 .attr("transform", "translate(" + 200 + "," + 50 + ")")
 
    const g = svg.selectAll("path.slice")
                 .data(arcData)
@@ -144,11 +149,30 @@ function createPieChart(svgSelector, data) {
     .style("fill", (d,i) => colorScale(i))
                 
 
-   g.append('text')
-      .attr("x",(d,i) => arc.centroid(d)[0])
-      .attr("y",(d,i) => arc.centroid(d)[1] + 5)
-      .attr("text-anchor", "middle")
-      .text(d => d.data.subject)
+   const legend = svg.append("g")
+                     .attr("transform", "translate(450, 50)")
+   
+   legend.selectAll("g")
+         .data(arcData)
+         .enter()
+         .append("rect")
+         .attr("y", d => 10 * d.index * 1.8)
+         .attr('width', 10)
+         .attr('height', 10)
+         .attr('fill', d => colorScale(d.index))
+         .attr('stroke', 'grey')
+         .style('stroke-width', '1px')
+
+   legend.selectAll("g")
+         .data(arcData)
+         .enter()
+         .append("text")
+         .text(d => d.data.subject)
+         .attr("x", 15 * 1.2)
+         .attr("y", d => 10 * d.index * 1.8 + 10)
+         .style('font-family', 'sans-serif')
+         .style('font-size', '12px')
+
 }
 
 function update() {
