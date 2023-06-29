@@ -74,7 +74,7 @@ function createLineChart(svgSelector, dataset) {
                   .append("svg")
                   .attr("width", width)
                   .attr("height", height)
-                  .attr("transform", "translate(" + 150 + "," + 30 + ")")
+                  .attr("transform", "translate(" + 30 + "," + 30 + ")")
 
     svg.append("g")
        .attr("class", "x-axis")
@@ -124,7 +124,7 @@ function createPieChart(svgSelector, data) {
 
    const arcData = pie(data)  
    const arc = d3.arc()
-                 .innerRadius(50)
+                 .innerRadius(80)
                  .outerRadius(200)
                  .padAngle(2)
                  .padRadius(2)
@@ -135,7 +135,7 @@ function createPieChart(svgSelector, data) {
                  .append("svg")
                  .attr("width", width)
                  .attr("height", height)
-                 .attr("transform", "translate(" + 200 + "," + 50 + ")")
+                 .attr("transform", "translate(" + 80 + "," + 50 + ")")
 
    const g = svg.selectAll("path.slice")
                 .data(arcData)
