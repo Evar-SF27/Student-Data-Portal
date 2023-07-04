@@ -1,5 +1,5 @@
-function layoutYear(data) {
-    let layoutData = data.filter(d => d.subject == "Bio")
+function layoutYear(data, subject) {
+    let layoutData = data.filter(d => d.subject == subject)
     // console.log('1', layoutData)
     
     d = []
@@ -15,8 +15,8 @@ function layoutYear(data) {
     return d
 }
 
-function layoutSubject(data) {
-  let layoutData = data.filter(d => d.year == "2011-12")
+function layoutSubject(data, year) {
+  let layoutData = data.filter(d => d.year == year)
 
   return layoutData
 }
@@ -40,8 +40,8 @@ function layoutMean(data) {
   return d
 }
 
-function layoutPercentage(data) {
-  let layoutData = data.filter(d => d.year == "2013-14")
+function layoutPercentage(data, year) {
+  let layoutData = data.filter(d => d.year == year)
 
   return layoutData
 }

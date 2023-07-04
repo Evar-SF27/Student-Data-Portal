@@ -13,26 +13,58 @@
     </header>
     <div id="charts">
         <div class="row-one">
-            <div class="subject-number">
-                <p>This graph shows a bar chart of number of students that registered for each subjects for a particular year</p>
+            <div class="subject-year">
+                <p><span>Chart Description: </span>This is a line graph showing the evolution of a particular subject through out the college's life.</p>
+                <br />
+                <p>
+                    <span>Menu: </span>
+                    <select id="subject-select">
+                        <option value="Bio">Biology</option>
+                        <option value="Csc">Computer Science</option>
+                        <option value="Econs">Economics</option>
+                        <option value="Human Bio">Human Biology</option>
+                        <option value="IR">Internal Relations</option>
+                        <option value="MSE">MSE</option>
+                        <option value="ME">Mechanical Engineering</option>
+                        <option value="PS">PS</option>
+                        <option value="Psy">Psychology</option>
+                        <option value="STS">STS</option>
+                    </select>
+                </p>
             </div>
             <div class="subject-mean">
-                <p>This graph shows a bar chart of the average number of students that registered for each subjects through out the college's life</p>
+                <p><span>Chart Description: </span>This graph shows a bar chart of the average number of students that registered for each subjects through out the college's life.</p>
             </div>
         </div>
         <div class="row-two">
-            <div class="subject-year">
-                <p>This is a line graph showing the evolution of a particular subject through out the college's life</p>
+            <div class="subject-number">
+                <p><span>Chart Description: </span>This graph shows a bar chart of number of students that registered for each subjects for a particular year.</p>
+                <br />
+                <p>
+                    <span>Menu: </span>
+                    <select id="year-select">
+                        <option value="2011-12">2011-12</option>
+                        <option value="2012-13">2012-13</option>
+                        <option value="2013-14">2013-14</option>
+                        <option value="2014-15">2014-15</option>
+                        <option value="2015-16">2015-16</option>
+                        <option value="2016-17">2016-17</option>
+                        <option value="2017-18">2017-18</option>
+                        <option value="2018-19">2018-19</option>
+                    </select>
+                </p>
             </div>
             <div class="subject-pie">
-                <p>This pie chart shows the percentage of students that registered for a subject against the total number of students that were enrolled for that particular year</p>
+                <p><span>Chart Description: </span>This pie chart shows the percentage of students that registered for a subject against the total number of students that were enrolled for that particular year.</p>
             </div>
         </div>
     </div>
     <script src="lib/d3.min.js"></script>
     <script src="js/config.js"></script>
+    <script src="js/state.js"></script>
     <script src="js/layout.js"></script>
     <script src="js/update.js"></script>
+    <script src="js/options.js"></script>
     <script src="js/index.js"></script>
 </body>
 </html>

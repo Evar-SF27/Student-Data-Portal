@@ -18,7 +18,7 @@ function createBarChart(svgSelector, data) {
                   .append("svg")
                   .attr("width", width)
                   .attr("height", height)
-                  .attr("transform", "translate(" + 30 + "," + 30 + ")")
+                  .attr("transform", "translate(" + 0 + "," + 30 + ")")
 
     svg.append("g")
        .attr("class", "x-axis")
@@ -50,13 +50,6 @@ function createBarChart(svgSelector, data) {
 function createLineChart(svgSelector, dataset) {
    data = dataset[0].data
    dataPath = dataset[0].dataPath
-//    var dataPath = [
-//       [1,1], [12,20], [24,36],
-//       [32, 50], [40, 70], [50, 100],
-//       [55, 106], [65, 123], [73, 130],
-//       [78, 134], [83, 136], [89, 138],
-//       [100, 140]
-//   ]
 
    const xScale = d3.scaleBand()
                      .range([0, width - margin.right])
@@ -74,7 +67,7 @@ function createLineChart(svgSelector, dataset) {
                   .append("svg")
                   .attr("width", width)
                   .attr("height", height)
-                  .attr("transform", "translate(" + 30 + "," + 30 + ")")
+                  .attr("transform", "translate(" + 0 + "," + 30 + ")")
 
     svg.append("g")
        .attr("class", "x-axis")
@@ -110,11 +103,11 @@ function createLineChart(svgSelector, dataset) {
       .attr("cx", (d) => margin.left + xScale(d.year))
       .attr("cy", (d) => (height - margin.bottom) - yScale(d.number))
 
-   svg.append("path")
-      .data(dataPath)
-      .attr("class", "line")
-      .attr("d", line)
-      .style("stroke", "red")
+   // svg.append("path")
+   //    .data(dataPath)
+   //    .attr("class", "line")
+   //    .attr("d", line)
+   //    .style("stroke", "red")
 }
 
 function createPieChart(svgSelector, data) {
@@ -176,8 +169,10 @@ function createPieChart(svgSelector, data) {
 }
 
 function update() {
-   createPieChart(".subject-pie", layoutPercentage(data))
-   createBarChart(".subject-number", layoutSubject(data))
+   updateSubjectMenu()
+   updateYearMenu()
+   createPieChart(".subject-pie", layoutPercentage(data, state.selectedYear))
+   createBarChart(".subject-number", layoutSubject(data, state.selectedYear))
    createBarChart(".subject-mean", layoutMean(data))
-   createLineChart(".subject-year", layoutYear(data))
+   createLineChart(".subject-year", layoutYear(data, state.selectedSubject))
 }
